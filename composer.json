@@ -1,0 +1,22 @@
+{
+    "name": "foglcz/dibiproxy",
+    "description": "Collection of proxy drivers for dibi database layer.",
+    "keywords": ["dibi"],
+    "homepage": "http://github.com/foglcz/DibiProxy",
+    "license": ["New BSD"],
+    "authors":[
+        {
+            "name": "Pavel Ptáček",
+            "homepage": "http://animalgroup.cz"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/foglcz/DibiProxy/issues"
+    },
+    "require":{
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "classmap": ["lib/"]
+    }    
+}

@@ -66,10 +66,19 @@ functions, you need to call override::
 This will result in caching the query results under this static identifier. Hence, you can have database-changing queries
 running on proxied project.
 
-Nette framework addition
-========================
-If you're using Nette Framework ( http://www.nette.org ) as we do, you need to disable debugging. There are several further
-queries, which happens after the class is destroyed, and it results in not-caching the debugger results - hence producing notices.
+Nette framework loading
+=======================
+If you're using Nette Framework (that awesome thing can be obtained at http://www.nette.org ) with the dibi driver within
+config.neon file, load the proxied classes this way::
+
+  database:
+      driver: ProxyMysqli
+
+  services:
+      database: DibiProxyConnection(%database%)
+
+... which basically means exchanging the driver within config parameters & changing the connection class name
+(= changing DibiConnection --> DibiProxyConnection).
 
 Author and license
 ==================

@@ -80,6 +80,22 @@ config.neon file, load the proxied classes this way::
 ... which basically means exchanging the driver within config parameters & changing the connection class name
 (= changing DibiConnection --> DibiProxyConnection).
 
+PHP 5.3 or 5.2
+==============
+The DibiProxy classes exploit PHP 5.4 Trait fetature. However, as the Dibi has support for PHP 5.2, should you want to
+run DibiProxy on older version of php, you need to do one simple change.
+
+- First, pick the driver you want to use - eg. ProxyMysqli. That one is found within lib/drivers/ProxyMysqli.php
+- Edit the ProxyMysqli.php file and remove the "use" line
+- Open file lib/ProxyTrait.php and copy contents of the trait DibiProxyTrait { /* copy the content within brackets */ }
+- Put the content of the trait in place of the line, which contains use statement.
+- Copy the exception definitions from the bottom of the trait file, and put them into the driver file.
+
+The resulting file would be then looking like this: https://gist.github.com/5464ca39375ddacf0041
+
+Esentialy, this is what php parser does with traits. They are basically assisted copy-paste, wchich is precisely the
+reason why we used them.
+
 Author and license
 ==================
 Created with love by Pavel Ptacek (c) 2012.
